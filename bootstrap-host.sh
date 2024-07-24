@@ -55,4 +55,7 @@ CHI_DIRS=("/chi" "/chi/bin" "/chi/svc" "/chi/log" "/chi/tmp")
 for dir in "${CHI_DIRS[@]}"; do
     echo "Creating directory: $dir"
     mkdir -pv "$dir"
+    echo "Setting permissions on directory: $dir"
+    setfacl -R -d -m g:docker:rwx "$dir"
+    setfacl -R -m g:docker:rwx "$dir"
 done

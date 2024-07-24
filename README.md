@@ -9,4 +9,4 @@ CHI (Container Hosting Infrastructure) Toolkit for setting up container hosts
 
 ## Steps to use
 
-1. Run `curl `
+1. Run `curl https://raw.githubusercontent.com/dhaanpaa-lab0/chi-setup-toolkit/main/bootstrap-host.sh | bash`
