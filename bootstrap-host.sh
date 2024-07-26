@@ -51,7 +51,7 @@ apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 echo "-----------------------------------------------------------------------------------"
 echo "          CHI (Container Hosting Infrastructure) Directory Creation"
 echo "-----------------------------------------------------------------------------------"
-CHI_DIRS=("/chi" "/chi/bin" "/chi/svc" "/chi/log" "/chi/tmp")
+CHI_DIRS=("/chi" "/chi/bin" "/chi/svc" "/chi/log" "/chi/tmp"  "/chi/env")
 for dir in "${CHI_DIRS[@]}"; do
     echo "Creating directory: $dir"
     mkdir -pv "$dir"
@@ -59,3 +59,11 @@ for dir in "${CHI_DIRS[@]}"; do
     setfacl -R -d -m g:docker:rwx "$dir"
     setfacl -R -m g:docker:rwx "$dir"
 done
+
+# Install profile.d script
+echo "-----------------------------------------------------------------------------------"
+echo "          CHI (Container Hosting Infrastructure) Profile Script Installation"
+echo "-----------------------------------------------------------------------------------"
+echo "export CHI_DIR=/chi" > /etc/profile.d/chi.sh
+echo "export PATH=\$PATH:\$CHI_DIR/bin" >> /etc/profile.d/chi.sh
+chmod a+x /etc/profile.d/chi.sh

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+DKR_COMP_APP_SET=$1
+DKR_COMP_APP_FOLDER=/chi/svc/$DKR_COMP_APP_SET
+if [ -z "$DKR_COMP_APP_SET" ]; then
+    echo "Must specify an app set"
+    exit 1
+fi
+
+cd $DKR_COMP_APP_FOLDER
+docker compose up -d

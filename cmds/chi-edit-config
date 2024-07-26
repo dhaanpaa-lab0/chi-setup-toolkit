@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+if [ -z "$1" ]; then
+    echo "Usage: $0 <config-name>"
+    exit 1
+fi
+
+CONFIG_NAME=$1
+CONFIG_FILE=/chi/env/$CONFIG_NAME.env
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "Config $CONFIG_NAME not found"
+    exit 1
+fi
+
+jed "$CONFIG_FILE"

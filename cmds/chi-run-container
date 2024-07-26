@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+PLATFORM_VOLUME=/chi
+PLATFORM_VOLUME_CONTAINER=/platform
+PLATFORM_ONESHOT_CONFIGS=/chi/env
+PLATFORM_ONESHOT_CONFIG_NAME=$1
+PLATFORM_ONESHOT_CONFIGS_FILE="$PLATFORM_ONESHOT_CONFIGS/$1.env"
+if [ -z "$PLATFORM_ONESHOT_CONFIG_NAME" ]; then
+    echo "Usage: $0 <oneshot-container>"
+    exit 1
+fi
+if [ ! -f "$PLATFORM_ONESHOT_CONFIGS_FILE" ]; then
+    echo "Oneshot config $1 not found"
+    exit 1
+fi
+docker run \
+    -v $PLATFORM_VOLUME:$PLATFORM_VOLUME_CONTAINER \
+    --env-file "$PLATFORM_ONESHOT_CONFIGS_FILE" \
+    --rm \
+     "$PLATFORM_ONESHOT_CONFIG_NAME"
